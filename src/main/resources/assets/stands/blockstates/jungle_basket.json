@@ -1,0 +1,13 @@
+{
+	"forge_marker": 1,
+	"variants": {
+		"x": {
+			"false": {
+				"model": "stands:jungle_basket"
+			},
+			"true": {
+				"model": "stands:jungle_basket", "y": 90
+			}
+		}
+	}
+}

@@ -1,5 +1,7 @@
 package kienanblue.stands.blocks;
 
+import kienanblue.stands.Stands;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -151,7 +153,7 @@ public class TileEntityBasket extends TileEntity implements IInventory
     @Override
     public String getName()
     {
-        return this.hasCustomName() ? this.customName : "tile.stands.oak_basket.name";
+        return this.hasCustomName() ? this.customName : I18n.format("gui."+Stands.MODID+".basket");
     }
     
     @Override
@@ -163,4 +165,6 @@ public class TileEntityBasket extends TileEntity implements IInventory
         }
         return false;
     }
+    
+    
 }

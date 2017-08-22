@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
  */
 public class GuiBasket extends GuiContainer
 {
-    private static final ResourceLocation texture = new ResourceLocation(Stands.MODID, "textures/gui/basket");
+    private static final ResourceLocation texture = new ResourceLocation(Stands.MODID, "textures/gui/basket.png");
     
     private static TileEntityBasket tileStatic;
     private TileEntityBasket tile = tileStatic;
@@ -21,8 +21,8 @@ public class GuiBasket extends GuiContainer
     {
         super(container);
         tileStatic = tile;
-        this.xSize = 128;
-        this.ySize = 128;
+        this.xSize = 176;
+        this.ySize = 166;
     }
     
     @Override
@@ -39,7 +39,7 @@ public class GuiBasket extends GuiContainer
             }
             String name = tile.getName();
             int l = (xSize-fontRenderer.getStringWidth(name))/2;
-            fontRenderer.drawString(name, this.guiLeft+l, this.guiTop+15, 3216909);
+            fontRenderer.drawString(name, this.guiLeft+l, this.guiTop+15, 646464);
         }
     }
     
@@ -49,15 +49,4 @@ public class GuiBasket extends GuiContainer
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
         this.renderHoveredToolTip(mouseX - guiLeft, mouseY - guiTop);
     }
-    /*
-    private static String basketType()
-    {
-        if(tileStatic.getBlockType().getRegistryName() == ModBlocks.spruce_basket.getRegistryName()) return "spruce";
-        if(tileStatic.getBlockType().getRegistryName() == ModBlocks.birch_basket.getRegistryName()) return "birch";
-        if(tileStatic.getBlockType().getRegistryName() == ModBlocks.jungle_basket.getRegistryName()) return "jungle";
-        if(tileStatic.getBlockType().getRegistryName() == ModBlocks.acacia_basket.getRegistryName()) return "acacia";
-        if(tileStatic.getBlockType().getRegistryName() == ModBlocks.dark_oak_basket.getRegistryName()) return "dark_oak";
-        if(tileStatic.getBlockType().getRegistryName() == ModBlocks.metal_basket.getRegistryName()) return "metal";
-        return "oak";
-    }*/
 }

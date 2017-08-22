@@ -49,7 +49,7 @@ public class ContainerBasket extends Container
         @Override
         public boolean isItemValid(ItemStack stack)
         {
-            if(stack.getItem() instanceof ItemFood) return true;
+            if(stack.getItem() instanceof ItemFood && !(stack.getItem() == Items.MUSHROOM_STEW || stack.getItem() == Items.RABBIT_STEW || stack.getItem() == Items.BEETROOT_SOUP)) return true;
             return false;
         }
     }
@@ -64,8 +64,8 @@ public class ContainerBasket extends Container
         @Override
         public boolean isItemValid(ItemStack stack)
         {
-            return stack.getItem() instanceof ItemFood || stack.getItem() == Items.BUCKET || stack.getItem() == Items.WATER_BUCKET
-                    || stack.getItem() == Items.LAVA_BUCKET || stack.getItem() == Items.MILK_BUCKET;
+            return (stack.getItem() == Items.MUSHROOM_STEW || stack.getItem() == Items.RABBIT_STEW) || stack.getItem() == Items.BEETROOT_SOUP || stack.getItem() == Items.BUCKET
+                    || stack.getItem() == Items.WATER_BUCKET || stack.getItem() == Items.LAVA_BUCKET || stack.getItem() == Items.MILK_BUCKET;
         }
     }
 }

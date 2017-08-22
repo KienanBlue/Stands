@@ -1,0 +1,13 @@
+{
+	"forge_marker": 1,
+	"variants": {
+		"x": {
+			"false": {
+				"model": "stands:acacia_basket"
+			},
+			"true": {
+				"model": "stands:acacia_basket", "y": 90
+			}
+		}
+	}
+}

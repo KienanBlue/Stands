@@ -1,0 +1,13 @@
+{
+	"forge_marker": 1,
+	"variants": {
+		"x": {
+			"false": {
+				"model": "stands:spruce_basket"
+			},
+			"true": {
+				"model": "stands:spruce_basket", "y": 90
+			}
+		}
+	}
+}
