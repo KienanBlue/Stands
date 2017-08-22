@@ -1,0 +1,7 @@
+{
+	"model": "block/basket",
+	"variants": {
+		"normal": {},
+		"ew": { "rotation": {"y": 90} }
+	}
+}
