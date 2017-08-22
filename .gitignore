@@ -1,0 +1,29 @@
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+
+*.bat
+src/main/resources/pack.mcmeta
+gradle/wrapper/gradle-wrapper.properties
+gradle.properties
+*.gradle
+gradle/wrapper/gradle-wrapper.jar
