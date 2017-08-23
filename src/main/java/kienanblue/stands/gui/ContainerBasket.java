@@ -20,7 +20,13 @@ public class ContainerBasket extends Container
 {
     public ContainerBasket(InventoryPlayer inv, TileEntityBasket basket)
     {
-        addSlotToContainer(new SlotBasket(basket, 0, 1, 1));
+        addSlotToContainer(new SlotCurrency(basket, 0, 54, 35));
+        addSlotToContainer(new SlotBasket(basket, 1, 80, 17));
+        addSlotToContainer(new SlotBasket(basket, 1, 98, 17));
+        addSlotToContainer(new SlotBasket(basket, 1, 80, 35));
+        addSlotToContainer(new SlotBasket(basket, 1, 98, 35));
+        addSlotToContainer(new SlotBasket(basket, 1, 80, 53));
+        addSlotToContainer(new SlotBasket(basket, 1, 98, 53));
     
         for (int i = 0; i < 3; ++i)
         {
