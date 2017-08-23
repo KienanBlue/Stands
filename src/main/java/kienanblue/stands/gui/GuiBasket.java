@@ -33,10 +33,6 @@ public class GuiBasket extends GuiContainer
         this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
         if(tile != null)
         {
-            if(tile.getStackInSlot(0).isEmpty())
-            {
-                drawTexturedModalRect(guiLeft+100, guiTop+50, 128, 0, 16, 16);
-            }
             fontRenderer.drawString(tile.getName(), this.xSize / 2, 6, 4210752);
         }
     }

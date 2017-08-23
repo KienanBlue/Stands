@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public class SlotCurrency extends Slot
 {
+    
     public SlotCurrency(IInventory inventory, int index, int x, int y)
     {
         super(inventory, index, x, y);
@@ -24,21 +25,14 @@ public class SlotCurrency extends Slot
     @Override
     public boolean isItemValid(ItemStack stack)
     {
-        if(stack.getItem() == validItems()) return true;
-        return false;
-    }
-    
-    public static Item validItems()
-    {
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(Items.NETHER_STAR);
-        items.add(Items.EMERALD);
-        items.add(Items.DIAMOND);
-        
-        for(int i = 0; i < items.size(); i++)
+        ArrayList<Item> validItems = new ArrayList<>();
+        validItems.add(Items.NETHER_STAR);
+        validItems.add(Items.EMERALD);
+        validItems.add(Items.DIAMOND);
+        for(int i = 0; i < validItems.size(); i++)
         {
-            return items.get(i);
+            if(stack.getItem() == validItems.get(i)) return true;
         }
-        return Items.EMERALD;
+        return false;
     }
 }

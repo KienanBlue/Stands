@@ -24,4 +24,6 @@ public class SlotBasket extends Slot
         if(stack.getItem() instanceof ItemFood && !(stack.getItem() == Items.MUSHROOM_STEW || stack.getItem() == Items.RABBIT_STEW || stack.getItem() == Items.BEETROOT_SOUP)) return true;
         return false;
     }
+    
+    
 }

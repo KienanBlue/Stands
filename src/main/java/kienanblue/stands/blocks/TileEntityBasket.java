@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.items.ItemStackHandler;
 
 /**
  * Created by Kienan on 20/08/2017.
@@ -35,6 +36,8 @@ public class TileEntityBasket extends TileEntity implements IInventory
         {
             this.customName = compound.getString("CustomName");
         }
+        
+        this.deserializeNBT(compound);
     }
     
     @Override
@@ -48,6 +51,8 @@ public class TileEntityBasket extends TileEntity implements IInventory
         {
             compound.setString("CustomName", this.customName);
         }
+        
+        this.serializeNBT();
         
         return compound;
     }
