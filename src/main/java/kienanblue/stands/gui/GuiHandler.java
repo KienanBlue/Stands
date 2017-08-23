@@ -16,16 +16,13 @@ import javax.annotation.Nullable;
  */
 public class GuiHandler implements IGuiHandler
 {
-    public enum ID
-    {
-        BASKET
-    }
+    public static final int BASKET = 0;
     
     @Override
-    public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
         BlockPos pos = new BlockPos(x, y, z);
-        switch(ID.values()[id])
+        switch(ID)
         {
             case BASKET:
                 return new ContainerBasket(player.inventory, (TileEntityBasket) world.getTileEntity(pos));
@@ -35,13 +32,14 @@ public class GuiHandler implements IGuiHandler
     }
     
     @Override
-    public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
+    @SideOnly(Side.CLIENT)
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
         BlockPos pos = new BlockPos(x, y, z);
-        switch(ID.values()[id])
+        switch(ID)
         {
             case BASKET:
-                return new GuiBasket((Container) getServerGuiElement(id, player, world, x, y, z), (TileEntityBasket) world.getTileEntity(pos));
+                return new GuiBasket((Container) getServerGuiElement(ID, player, world, x, y, z), (TileEntityBasket) world.getTileEntity(pos));
             default:
                 return null;
         }

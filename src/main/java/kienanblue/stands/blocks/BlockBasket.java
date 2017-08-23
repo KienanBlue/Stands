@@ -99,12 +99,6 @@ public class BlockBasket extends BlockContainer
     {
         return false;
     }
-    /*
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
-    }*/
     
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state)
@@ -133,7 +127,7 @@ public class BlockBasket extends BlockContainer
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        playerIn.openGui(Stands.instance, GuiHandler.ID.BASKET.ordinal(), worldIn, pos.getX(), pos.getY(), pos.getZ());
+        playerIn.openGui(Stands.instance, GuiHandler.BASKET, worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
     

@@ -20,11 +20,20 @@ public class ContainerBasket extends Container
 {
     public ContainerBasket(InventoryPlayer inv, TileEntityBasket basket)
     {
-        if(basket.getBlockType() == ModBlocks.metal_basket)
-        {
-            addSlotToContainer(new SlotBasketMetal(basket, 0, 1, 1));
-        }
         addSlotToContainer(new SlotBasket(basket, 0, 1, 1));
+    
+        for (int i = 0; i < 3; ++i)
+        {
+            for (int j = 0; j < 9; ++j)
+            {
+                this.addSlotToContainer(new Slot(inv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+            }
+        }
+    
+        for (int k = 0; k < 9; ++k)
+        {
+            this.addSlotToContainer(new Slot(inv, k, 8 + k * 18, 142));
+        }
     }
     
     @Override
@@ -37,35 +46,5 @@ public class ContainerBasket extends Container
     public boolean canInteractWith(EntityPlayer playerIn)
     {
         return true;
-    }
-    
-    private class SlotBasket extends Slot
-    {
-        public SlotBasket(IInventory inventory, int index, int x, int y)
-        {
-            super(inventory, index, x, y);
-        }
-    
-        @Override
-        public boolean isItemValid(ItemStack stack)
-        {
-            if(stack.getItem() instanceof ItemFood && !(stack.getItem() == Items.MUSHROOM_STEW || stack.getItem() == Items.RABBIT_STEW || stack.getItem() == Items.BEETROOT_SOUP)) return true;
-            return false;
-        }
-    }
-    
-    private class SlotBasketMetal extends Slot
-    {
-        public SlotBasketMetal(IInventory inventory, int index, int x, int y)
-        {
-            super(inventory, index, x, y);
-        }
-        
-        @Override
-        public boolean isItemValid(ItemStack stack)
-        {
-            return (stack.getItem() == Items.MUSHROOM_STEW || stack.getItem() == Items.RABBIT_STEW) || stack.getItem() == Items.BEETROOT_SOUP || stack.getItem() == Items.BUCKET
-                    || stack.getItem() == Items.WATER_BUCKET || stack.getItem() == Items.LAVA_BUCKET || stack.getItem() == Items.MILK_BUCKET;
-        }
     }
 }

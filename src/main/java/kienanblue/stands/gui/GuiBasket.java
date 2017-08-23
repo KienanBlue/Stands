@@ -37,9 +37,7 @@ public class GuiBasket extends GuiContainer
             {
                 drawTexturedModalRect(guiLeft+100, guiTop+50, 128, 0, 16, 16);
             }
-            String name = tile.getName();
-            int l = (xSize-fontRenderer.getStringWidth(name))/2;
-            fontRenderer.drawString(name, this.guiLeft+l, this.guiTop+15, 646464);
+            fontRenderer.drawString(tile.getName(), this.xSize / 2, 6, 4210752);
         }
     }
     
