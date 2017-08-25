@@ -9,8 +9,13 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+
+import javax.annotation.Nullable;
 
 /**
  * Created by Kienan on 20/08/2017.
@@ -23,38 +28,6 @@ public class TileEntityBasket extends TileEntity implements IInventory
     public TileEntityBasket()
     {
     
-    }
-    
-    @Override
-    public void readFromNBT(NBTTagCompound compound)
-    {
-        super.readFromNBT(compound);
-    
-        ItemStackHelper.loadAllItems(compound, this.content);
-        
-        if(compound.hasKey("CustomName", 8))
-        {
-            this.customName = compound.getString("CustomName");
-        }
-        
-        this.deserializeNBT(compound);
-    }
-    
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
-    {
-        super.writeToNBT(compound);
-        
-        ItemStackHelper.saveAllItems(compound, this.content);
-        
-        if(this.hasCustomName())
-        {
-            compound.setString("CustomName", this.customName);
-        }
-        
-        this.serializeNBT();
-        
-        return compound;
     }
     
     @Override
@@ -103,7 +76,7 @@ public class TileEntityBasket extends TileEntity implements IInventory
     @Override
     public int getInventoryStackLimit()
     {
-        return 32;
+        return 64;
     }
     
     @Override
@@ -158,13 +131,14 @@ public class TileEntityBasket extends TileEntity implements IInventory
     @Override
     public String getName()
     {
-        return this.hasCustomName() ? this.customName : I18n.format("gui."+Stands.MODID+".basket");
+        if(this.hasCustomName()) return this.customName;
+        return I18n.format("gui."+Stands.MODID+".basket");
     }
     
     @Override
     public boolean hasCustomName()
     {
-        if(this.customName != null)
+        if(this.customName != null && !this.customName.isEmpty())
         {
             return true;
         }
@@ -172,4 +146,40 @@ public class TileEntityBasket extends TileEntity implements IInventory
     }
     
     
+    
+    @Override
+    public void readFromNBT(NBTTagCompound compound)
+    {
+        super.readFromNBT(compound);
+        
+        this.content = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(compound, this.content);
+        
+        if(compound.hasKey("CustomName", 8))
+        {
+            this.customName = compound.getString("CustomName");
+        }
+    }
+    
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    {
+        super.writeToNBT(compound);
+        
+        ItemStackHelper.saveAllItems(compound, this.content);
+        
+        if(this.hasCustomName())
+        {
+            compound.setString("CustomName", this.customName);
+        }
+        
+        return compound;
+    }
+    
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
+    {
+        return super.getCapability(capability, facing);
+    }
 }
