@@ -7,5 +7,7 @@ tile.stands.acacia_basket.name=Acacia Basket
 tile.stands.dark_oak_basket.name=Dark Oak Basket
 tile.stands.metal_basket.name=Metal Basket
 
+tile.basket_wood.name=Wooden Basket
+
 //// GUIS ////
 gui.stands.basket=Basket

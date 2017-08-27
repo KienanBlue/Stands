@@ -1,7 +1,13 @@
 {
-	"model": "block/basket",
+	"forge_marker": 1,
 	"variants": {
-		"normal": {},
-		"ew": { "rotation": {"y": 90} }
+		"x": {
+			"false": {
+				"model": "stands:basket"
+			},
+			"true": {
+				"model": "stands:basket", "y": 90
+			}
+		}
 	}
 }
