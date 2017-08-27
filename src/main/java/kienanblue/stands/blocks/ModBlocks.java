@@ -1,15 +1,21 @@
 package kienanblue.stands.blocks;
 
 import kienanblue.stands.Stands;
-import kienanblue.stands.util.GenerateBlockStateJson;
-import kienanblue.stands.util.ReadOriginalBlockModelJson;
+import kienanblue.stands.util.ModModelRegistry;
+import kienanblue.stands.util.ModTextureAtlas;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.*;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -18,11 +24,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
+import sun.swing.BakedArrayList;
 
-import java.nio.file.Files;
-import java.nio.file.attribute.FileAttribute;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Kienan on 11/08/2017.
@@ -32,7 +39,8 @@ public class ModBlocks
 {
     public static ArrayList<Block> blocks = new ArrayList<>();
     
-    public static GenerateBlockStateJson wood_json;
+    //public static GenerateBlockStateJson wood_json;
+    public static ModelLoaderRegistry modelRegistry;
     
     public static Block wood_basket, oak_basket, spruce_basket, birch_basket, jungle_basket, acacia_basket, dark_oak_basket, metal_basket;
     
@@ -47,7 +55,8 @@ public class ModBlocks
             int meta = itemStack.getMetadata();
             String basketId = Stands.MODID+':'+id+"_basket_"+meta;
             blocks.add(wood_basket = new BlockBasketWood(basketId).setUnlocalizedName("basket_wood"));
-            wood_json = new GenerateBlockStateJson("resourcepacks/dev/assets/"+Stands.MODID+"/blockstates/", basketId.substring(Stands.MODID.length()+1));
+            
+            //wood_json = new GenerateBlockStateJson("resourcepacks/dev/assets/"+Stands.MODID+"/blockstates/", basketId.substring(Stands.MODID.length()+1));
         });
         //blocks.add(metal_basket = new BlockBasketMetal("metal_basket"));
     }
@@ -82,7 +91,61 @@ public class ModBlocks
     {
         for(int i = 0; i < blocks.size(); i++)
         {
+            IBakedModel model = bakedModel();
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(blocks.get(i)), 0, new ModelResourceLocation(Stands.MODID+":basket"));
         }
+    }
+    
+    @SideOnly(Side.CLIENT)
+    private static IBakedModel bakedModel()
+    {
+        return new IBakedModel()
+        {
+            @SideOnly(Side.CLIENT)
+            @Override
+            public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand)
+            {
+                int[] i = new int[Integer.valueOf(String.valueOf(rand))];
+                int j = (int)rand;
+                VertexFormat vf = new VertexFormat();
+                return new BakedQuad(i, j, side, new ModTextureAtlas("planks_oak").load(Minecraft.getMinecraft().getResourceManager(), state.getBlock().getRegistryName(),
+                        null), this.isAmbientOcclusion(), );
+            }
+    
+            @SideOnly(Side.CLIENT)
+            @Override
+            public boolean isAmbientOcclusion()
+            {
+                return Minecraft.isAmbientOcclusionEnabled();
+            }
+    
+            @SideOnly(Side.CLIENT)
+            @Override
+            public boolean isGui3d()
+            {
+                return false;
+            }
+    
+            @SideOnly(Side.CLIENT)
+            @Override
+            public boolean isBuiltInRenderer()
+            {
+                return false;
+            }
+    
+            @SideOnly(Side.CLIENT)
+            @Override
+            public TextureAtlasSprite getParticleTexture()
+            {
+                return null;
+            }
+    
+            @SideOnly(Side.CLIENT)
+            @Override
+            public ItemOverrideList getOverrides()
+            {
+                return null;
+            }
+        };
     }
 }
