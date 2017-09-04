@@ -1,3 +1,4 @@
-tile.basket.name=%s Basket
+tile.stands.metal_basket.name=Metal Basket
+tile.stands.wood_basket.name=Wood Basket
 
 gui.stands.basket=Basket

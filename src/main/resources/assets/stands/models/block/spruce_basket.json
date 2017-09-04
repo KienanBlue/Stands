@@ -1,7 +1,0 @@
-{
-	"parent": "stands:block/basket",
-	"textures": {
-		"particle": "blocks/planks_spruce",
-		"texture": "blocks/planks_spruce"
-	}
-}

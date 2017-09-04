@@ -13,6 +13,5 @@ public class BlockBasketMetal extends BlockBasket
         super(id, Material.IRON);
         setHarvestLevel("pickaxe", 1);
         setSoundType(SoundType.METAL);
-        setLightOpacity(0);
     }
 }

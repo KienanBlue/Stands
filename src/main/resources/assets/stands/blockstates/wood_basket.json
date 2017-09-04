@@ -3,10 +3,10 @@
 	"variants": {
 		"x": {
 			"false": {
-				"model": "stands:acacia_basket"
+				"model": "stands:wood_basket"
 			},
 			"true": {
-				"model": "stands:acacia_basket", "y": 90
+				"model": "stands:wood_basket", "y": 90
 			}
 		}
 	}

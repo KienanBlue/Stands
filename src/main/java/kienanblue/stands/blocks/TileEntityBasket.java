@@ -145,8 +145,6 @@ public class TileEntityBasket extends TileEntity implements IInventory
         return false;
     }
     
-    
-    
     @Override
     public void readFromNBT(NBTTagCompound compound)
     {

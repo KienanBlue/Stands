@@ -39,7 +39,7 @@ public class GuiHandler implements IGuiHandler
         switch(ID)
         {
             case BASKET:
-                return new GuiBasket((Container) getServerGuiElement(ID, player, world, x, y, z), (TileEntityBasket) world.getTileEntity(pos));
+                return new GuiBasket(player.inventory, (TileEntityBasket) world.getTileEntity(pos));
             default:
                 return null;
         }
